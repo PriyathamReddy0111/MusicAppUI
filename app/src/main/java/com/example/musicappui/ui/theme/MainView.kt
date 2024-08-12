@@ -43,6 +43,7 @@ import com.example.musicappui.MainViewModel
 
 import com.example.musicappui.Screen
 import com.example.musicappui.screensInDrawer
+import com.example.musicappui.ui.theme.AccountDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -58,6 +59,9 @@ fun MainView(){
     val currentRoute = navBackStackEntry?.destination?.route
     val currentScreen = remember{
         viewModel.currentScreen.value
+    }
+    val dialogOpen = remember{
+        mutableStateOf(false)
     }
     val title = remember{
         mutableStateOf(currentScreen.title)
@@ -87,7 +91,7 @@ fun MainView(){
                             scaffoldState.drawerState.close()
                         }
                         if(item.dRoute == "add_account"){
-
+                            dialogOpen.value= true
                         }else{
                             controller.navigate(item.dRoute)
                             title.value = item.dTitle
@@ -98,6 +102,7 @@ fun MainView(){
         }
     ) {
         Navigation(navController = controller, viewModel = viewModel, pd = it)
+        AccountDialog(dialogOpen = dialogOpen)
     }
     
 }
