@@ -167,7 +167,7 @@ fun Navigation(navController: NavController, viewModel: MainViewModel, pd: Paddi
         }
 
         composable(Screen.BottomScreen.Browse.bRoute){
-
+            BrowseScreen()
         }
 
         composable(Screen.BottomScreen.Library.bRoute){
