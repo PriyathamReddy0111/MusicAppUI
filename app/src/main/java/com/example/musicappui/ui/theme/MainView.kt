@@ -69,11 +69,13 @@ fun MainView() {
         if (currentScreen is Screen.DrawerScreen || currentScreen == Screen.BottomScreen.Home) {
             BottomNavigation(modifier = Modifier.wrapContentSize()) {
                 screensInBottom.forEach { item ->
+                    val tint = if(currentRoute==item.bRoute) Color.White else Color.Black
                     BottomNavigationItem(
                         selected = currentRoute == item.bRoute,
                         onClick = { controller.navigate(item.bRoute) },
                         icon = {
                             Icon(
+                                tint = tint,
                                 painter = painterResource(id = item.icon),
                                 contentDescription = item.bTitle
                             )
