@@ -31,6 +31,7 @@ import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material.Scaffold
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.primarySurface
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.material3.Text
@@ -126,6 +127,23 @@ fun MainView() {
             topBar = {
                 TopAppBar(
                     title = { Text(text = title.value) },
+                    actions = {
+                              IconButton(onClick = {
+                                  scope.launch {
+                                      if (modalSheetState.isVisible){
+                                          modalSheetState.hide()
+                                      }
+                                      else{
+                                          modalSheetState.show()
+                                      }
+                                  }
+                              }) {
+                                  androidx.compose.material.Icon(
+                                      imageVector = Icons.Default.MoreVert,
+                                      contentDescription = null
+                                  )
+                              }
+                    },
                     navigationIcon = {
                         IconButton(onClick = {
                             scope.launch {
@@ -164,32 +182,53 @@ fun MainView() {
 }
 
 @Composable
-fun MoreBottomSheet(modifier: Modifier){
+fun MoreBottomSheet(modifier: Modifier) {
     Box(
-        Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(300.dp)
             .background(
-                androidx.compose.material.MaterialTheme.colors.primarySurface
+                color = androidx.compose.material.MaterialTheme.colors.primarySurface
             )
-    ){
-        Column (
+    ) {
+        Column(
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.SpaceBetween
-        ){
-            Row (
-                modifier.padding(16.dp)
-            ){
+        ) {
+            Row(
+                modifier = Modifier.padding(16.dp)
+            ) {
                 Icon(
                     painter = painterResource(id = R.drawable.baseline_settings_24),
-                    modifier=modifier.padding(end = 8.dp),
-                    contentDescription = "Settings"
+                    contentDescription = "Settings",
+                    modifier = Modifier.padding(end = 8.dp)
                 )
-                Text(text = "Settings", fontSize = 20.sp, color=Color.White)
+                Text(text = "Settings", fontSize = 20.sp, color = Color.White)
+            }
+            Row(
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.baseline_share_24),
+                    contentDescription = "Share",
+                    modifier = Modifier.padding(end = 8.dp)
+                )
+                Text(text = "Share", fontSize = 20.sp, color = Color.White)
+            }
+            Row(
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.baseline_help_center_24),
+                    contentDescription = "Help",
+                    modifier = Modifier.padding(end = 8.dp)
+                )
+                Text(text = "Help", fontSize = 20.sp, color = Color.White)
             }
         }
     }
 }
+
 
 @Composable
 fun DrawerItem(
