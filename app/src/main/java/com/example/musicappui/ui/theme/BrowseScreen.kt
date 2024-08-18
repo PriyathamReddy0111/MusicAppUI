@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.example.musicappui.R
 
 @Composable
-fun BrowseScreen(){
+fun Browse(){
     val categories = listOf("Hits","Happy","Workout","Running","TGIF","Yoga")
     LazyVerticalGrid(
         columns = GridCells.Fixed(2), content = {
